@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="w3-bar w3-black">
+  <a href="home.html" class="w3-button w3-bar-item"> back to song list</a>
+</nav>
+
+<!-- Band Members -->
+<section id="section">
+  <form>
+      <input id="txtSongName" type="text" placeholder="song name">
+      <textarea id="txtSongDetail" placeholder="song details"></textarea>
+      <input id="dtWorshipDate" type="date" placeholder="worship date">
+
+      <button id="btnSave">Save</button>
+  </form>
+</section>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-black w3-xlarge">
+  <a href="#"><i class="fa fa-facebook-official"></i></a>
+  <a href="#"><i class="fa fa-pinterest-p"></i></a>
+  <a href="#"><i class="fa fa-twitter"></i></a>
+  <a href="#"><i class="fa fa-flickr"></i></a>
+  <a href="#"><i class="fa fa-linkedin"></i></a>
+  <p class="w3-medium">
+  Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">anonymous</a>
+  </p>
+</footer>
+
+<script>
+
+$(document).ready(function(){
+    
+    $("#btnSave").click(function(){
+        // console.log($("#txtSongName").val());
+        // console.log($("#txtSongDetail").val());
+        // console.log($("#dtWorshipDate").val());
+
+        // return false;
+
+        // Token= "Token"+" "+ localStorage.getItem("TokenValue");
+        var request= $.ajax({
+        type:"POST",
+        //url:"http://127.0.0.1:8000/api/songs",
+        url:"https://authentication-appdemo.herokuapp.com/api/songs",
+        contentType:"application/json; charset=utf-8",
+        data:JSON.stringify({'songname':$("#txtSongName").val(),'songdetail':$("#txtSongDetail").val(),'worship_date':$("#dtWorshipDate").val()}),
+        dataType:"json",
+        // headers:{"Authorization":Token},
+        success:function(response){
+            console.log(response.length)
+            if(response.length>0){
+                alert("added sucessfully");
+            }
+        },
+        failure:function(response){
+        alert("failure");
+        },
+        error:function(response){
+        alert("error");
+        }
+        })
+        return false;
+    })
+})
+
+</script>
+
+</body>
+</html>
+

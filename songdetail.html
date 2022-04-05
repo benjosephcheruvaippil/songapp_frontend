@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="w3-bar w3-black">
+    <a href="home.html" class="w3-button w3-bar-item"> back to song list</a>
+</nav>
+
+<!-- Slide Show -->
+
+
+<!-- Band Description -->
+<!-- <section class="w3-container w3-center w3-content" style="max-width:600px">
+  <h2 class="w3-wide">THE BAND</h2>
+  <p class="w3-opacity"><i>We love music</i></p>
+  <p class="w3-justify">We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+</section> -->
+
+<!-- Band Members -->
+<section id="section" style="font-size:50px;color: white;background-color: black;font-weight:900;">
+  
+</section>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-black w3-xlarge">
+  <a href="#"><i class="fa fa-facebook-official"></i></a>
+  <a href="#"><i class="fa fa-pinterest-p"></i></a>
+  <a href="#"><i class="fa fa-twitter"></i></a>
+  <a href="#"><i class="fa fa-flickr"></i></a>
+  <a href="#"><i class="fa fa-linkedin"></i></a>
+  <p class="w3-medium">
+  Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>
+  </p>
+</footer>
+
+<script>
+
+$(document).ready(function(){
+    
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+        get: (searchParams, prop) => searchParams.get(prop),
+    });
+        // Get the value of "some_key" in eg "https://example.com/?some_key=some_value"
+    let value = params.songid; // "some_value"
+    
+    //Token= "Token"+" "+ localStorage.getItem("TokenValue");
+    var request= $.ajax({
+    type:"POST",
+    //url:"http://127.0.0.1:8000/api/songdetails",
+    url:"https://authentication-appdemo.herokuapp.com/api/songdetails",
+    contentType:"application/json; charset=utf-8",
+    data:JSON.stringify({'song_id':value}),
+    dataType:"json",
+    //headers:{"Authorization":Token},
+    success:function(response){
+        //console.log(response[0].fields.song_text);
+        for(var i=0;i<response.length;i++){
+        $("#section").append("<p>"+response[i].fields.song_text+"</p>")
+        }
+    },
+    failure:function(response){
+    alert("failure");
+    },
+    error:function(response){
+    alert("error");
+    }
+    })
+})
+
+</script>
+
+</body>
+</html>
+
