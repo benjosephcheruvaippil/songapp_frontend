@@ -5,7 +5,7 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
-<body>
+<body style="background-color: cyan;">
 
 <!-- Navigation -->
 <nav class="w3-bar w3-black">
@@ -23,17 +23,12 @@
 </section> -->
 
 <!-- Band Members -->
-<section id="section" style="font-size:medium;color: white;background-color: black;font-weight:100;">
+<section id="section" style="font-size:medium;color: black;background-color: cyan;font-weight:100;">
   
 </section>
 
 <!-- Footer -->
 <footer class="w3-container w3-padding-64 w3-center w3-black w3-xlarge">
-  <a href="#"><i class="fa fa-facebook-official"></i></a>
-  <a href="#"><i class="fa fa-pinterest-p"></i></a>
-  <a href="#"><i class="fa fa-twitter"></i></a>
-  <a href="#"><i class="fa fa-flickr"></i></a>
-  <a href="#"><i class="fa fa-linkedin"></i></a>
   <p class="w3-medium">
   Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">anonymous</a>
   </p>
@@ -49,7 +44,7 @@ $(document).ready(function(){
     var request= $.ajax({
     type:"GET",
     //url:"http://127.0.0.1:8000/api/songs",
-    url:"https://authentication-appdemo.herokuapp.com/api/songs",
+    url:"http://127.0.0.1:8000/api/songs",
     contentType:"application/json; charset=utf-8",
     data:JSON.stringify({'username':$("#txtUser").val(),'password':$("#txtPassword").val()}),
     dataType:"json",
@@ -57,7 +52,7 @@ $(document).ready(function(){
     success:function(response){
         console.log(response[0].songname);
         for(var i=0;i<response.length;i++){
-        $("#section").append("<p>"+response[i].songname+" - " +response[i].worship_date.split("T")[0].split("-").reverse().join("-")+ " <a style='color:white;' href='songdetail.html?songid="+response[i].id +"'>view</a> <button>edit</button><a onclick='DeleteSong("+response[i].id+")'>delete</a></p>")
+        $("#section").append("<p>"+response[i].songname+" - " +response[i].worship_date.split("T")[0].split("-").reverse().join("-")+ " &nbsp; <a style='color:white;' href='songdetail.html?songid="+response[i].id +"'>view</a> &nbsp; <a href='#'>edit</a> &nbsp; <a href='' onclick='DeleteSong("+response[i].id+")'>delete</a></p>")
         }
     },
     failure:function(response){
@@ -72,17 +67,19 @@ $(document).ready(function(){
 })
 
 function DeleteSong(songid){  
+
+        if(confirm("are you sure?")){
+
         var request= $.ajax({
         type:"DELETE",
         //url:"http://127.0.0.1:8000/api/songs",
-        url:"https://authentication-appdemo.herokuapp.com/api/songs",
+        url:"http://127.0.0.1:8000/api/songs",
         contentType:"application/json; charset=utf-8",
         data:JSON.stringify({'song_id':songid}),
         dataType:"json",
         // headers:{"Authorization":Token},
         success:function(response){
-            
-            alert(response);
+            console.log(response);
             location.reload();
         },
         failure:function(response){
@@ -92,6 +89,8 @@ function DeleteSong(songid){
         alert("error");
         }
         })
+      }
+      return false;
     }
 
 </script>

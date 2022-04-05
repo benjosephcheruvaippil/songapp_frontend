@@ -38,26 +38,22 @@
 <script>
 
 $(document).ready(function(){
+
+  $("#dtWorshipDate").val(convert());
     
     $("#btnSave").click(function(){
-        // console.log($("#txtSongName").val());
-        // console.log($("#txtSongDetail").val());
-        // console.log($("#dtWorshipDate").val());
-
-        // return false;
 
         // Token= "Token"+" "+ localStorage.getItem("TokenValue");
         var request= $.ajax({
         type:"POST",
         //url:"http://127.0.0.1:8000/api/songs",
-        url:"https://authentication-appdemo.herokuapp.com/api/songs",
+        url:"http://127.0.0.1:8000/api/songs",
         contentType:"application/json; charset=utf-8",
         data:JSON.stringify({'songname':$("#txtSongName").val(),'songdetail':$("#txtSongDetail").val(),'worship_date':$("#dtWorshipDate").val()}),
         dataType:"json",
         // headers:{"Authorization":Token},
         success:function(response){
-            console.log(response.length)
-            if(response.length>0){
+            if(response.id){
                 alert("added sucessfully");
             }
         },
@@ -71,6 +67,13 @@ $(document).ready(function(){
         return false;
     })
 })
+
+function convert() {
+  var date = new Date(),
+    mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+    day = ("0" + date.getDate()).slice(-2);
+  return [date.getFullYear(), mnth, day].join("-");
+  }
 
 </script>
 
