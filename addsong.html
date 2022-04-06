@@ -46,8 +46,8 @@ $(document).ready(function(){
         // Token= "Token"+" "+ localStorage.getItem("TokenValue");
         var request= $.ajax({
         type:"POST",
-        //url:"http://127.0.0.1:8000/api/songs",
-        url:"http://127.0.0.1:8000/api/songs",
+        //url:"https://authentication-appdemo.herokuapp.com/api/songs",
+        url:"https://authentication-appdemo.herokuapp.com/api/songs",
         contentType:"application/json; charset=utf-8",
         data:JSON.stringify({'songname':$("#txtSongName").val(),'songdetail':$("#txtSongDetail").val(),'worship_date':$("#dtWorshipDate").val()}),
         dataType:"json",

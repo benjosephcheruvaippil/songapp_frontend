@@ -43,8 +43,8 @@ $(document).ready(function(){
     // Token= "Token"+" "+ localStorage.getItem("TokenValue");
     var request= $.ajax({
     type:"GET",
-    //url:"http://127.0.0.1:8000/api/songs",
-    url:"http://127.0.0.1:8000/api/songs",
+    //url:"https://authentication-appdemo.herokuapp.com/api/songs",
+    url:"https://authentication-appdemo.herokuapp.com/api/songs",
     contentType:"application/json; charset=utf-8",
     data:JSON.stringify({'username':$("#txtUser").val(),'password':$("#txtPassword").val()}),
     dataType:"json",
@@ -72,8 +72,8 @@ function DeleteSong(songid){
 
         var request= $.ajax({
         type:"DELETE",
-        //url:"http://127.0.0.1:8000/api/songs",
-        url:"http://127.0.0.1:8000/api/songs",
+        //url:"https://authentication-appdemo.herokuapp.com/api/songs",
+        url:"https://authentication-appdemo.herokuapp.com/api/songs",
         contentType:"application/json; charset=utf-8",
         data:JSON.stringify({'song_id':songid}),
         dataType:"json",

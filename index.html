@@ -172,8 +172,8 @@ $(document).ready(function(){
 
        var request= $.ajax({
        type:"POST",
-       //url:"http://127.0.0.1:8000/api/login",
-       url:"http://127.0.0.1:8000/api/login",
+       //url:"https://authentication-appdemo.herokuapp.com/api/login",
+       url:"https://authentication-appdemo.herokuapp.com/api/login",
        contentType:"application/json; charset=utf-8",
        data:JSON.stringify({'username':$("#txtUser").val(),'password':$("#txtPassword").val()}),
        dataType:"json",
@@ -201,8 +201,8 @@ $(document).ready(function(){
 
 var request= $.ajax({
 type:"POST",
-//url:"http://127.0.0.1:8000/api/register",
-url:"http://127.0.0.1:8000/api/register",
+//url:"https://authentication-appdemo.herokuapp.com/api/register",
+url:"https://authentication-appdemo.herokuapp.com/api/register",
 contentType:"application/json; charset=utf-8",
 data:JSON.stringify({'username':$("#txtUser").val(),'password':$("#txtPassword").val()}),
 dataType:"json",
